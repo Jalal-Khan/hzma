@@ -1,0 +1,22 @@
+{
+    "name": "techchaps/wp-installer",
+    "type": "project",
+    "scripts": {
+        "run-wp": "php E:/vsCode/PHP/wp-installer/src/Techchaps/WpInstaller/wp-store-installer.php"
+      },
+    "autoload": {
+        "psr-4": {
+            "Techchaps\\WpInstaller\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jalal-Khan",
+            "email": "jalalusafxai@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.8",
+        "symfony/process": "^7.0"
+    }
+}
