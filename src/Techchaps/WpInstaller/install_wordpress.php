@@ -32,7 +32,7 @@ function installLatestWordPress($path = 'public_html', $locale = 'en_US') {
         }
         #endregion
 
-                # Download WordPress
+                #region Download zip file of WordPress latest version from wordpress.org 
                 echo "Downloading WordPress...\n";
                 $process = new Process(['curl', '-o', $path . '/latest.zip', 'https://wordpress.org/latest.zip']);
                 $process->setTimeout(300); // Set timeout to 5 minutes
@@ -44,8 +44,9 @@ function installLatestWordPress($path = 'public_html', $locale = 'en_US') {
                 } else {
                     echo "WordPress downloaded successfully.\n";
                 }
+                #endregion
         
-                # Unzip downloaded file (assuming it's a zip archive)
+                #region Unzip downloaded file
                 echo "Extracting WordPress files...\n";
                 $downloadedFile = "$path/latest.zip"; // Modify filename if different
                 if (!file_exists($downloadedFile)) {
@@ -59,36 +60,8 @@ function installLatestWordPress($path = 'public_html', $locale = 'en_US') {
                 $zip->extractTo($path);
                 $zip->close();
                 echo "WordPress files extracted successfully.\n";
-
-                
-        # Move extracted WordPress files to the public_html directory
-        echo "Moving WordPress files to public_html directory...\n";
-        $wordpressDir = $path . '/wordpress';
-        $targetDir = $path; // Assuming you want the WordPress files directly in the public_html directory
-        if (is_dir($wordpressDir)) {
-            move_all_files($wordpressDir, $targetDir); // Recursively move files within subdirectories
-            if (is_dir($wordpressDir)) {
-                rmdir($wordpressDir); // Remove the original wordpress directory
-            }
-            echo "WordPress files moved successfully.\n";
-        } else {
-            echo "Warning: WordPress directory not found: $wordpressDir\n";
-        }
-
-        // #region Download WordPress core files directly using wp-cli
-        // echo "Downloading WordPress core files...\n";
-        // $process = new Process(['C:/Users/jalal/bin/wp', 'core', 'download', '--locale=' . $locale, '--path=' . $path]); // Replace with your wp-cli.phar path
-        // $process->setTimeout(300); // Set timeout to 5 minutes
-        // $process->run(function ($type, $buffer) {
-        //     echo " > $buffer\n";
-        // });
-        // if (!$process->isSuccessful()) {
-        //     throw new Exception("Error downloading WordPress core files: " . $process->getErrorOutput());
-        // } else {
-        //     echo "WordPress core files downloaded successfully.\n";
-        // }
-        // #endregion
-
+                #endregion
+    
         #region Create the database if it does not exist
         echo "Creating database if it does not exist...\n";
         $mysqlPath = 'C:/xampp/mysql/bin/mysql.exe'; // Modify path if different
