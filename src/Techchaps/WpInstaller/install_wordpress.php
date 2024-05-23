@@ -120,7 +120,7 @@ PHP;
 
         #region Basic installation using wp-cli
         echo "Installing WordPress...\n";
-        $process = new Process(['C:/Users/jalal/bin/wp', 'core', 'install', '--url=http://localhost:8080/wp-installer/public_html/', '--title=My WordPress Site', '--admin_user=admin', '--admin_password=password', '--admin_email=admin@example.com', '--locale=' . $locale, '--path=' . $path]); // Replace with your wp-cli.phar path
+        $process = new Process(['wp', 'core', 'install', '--url=http://localhost:8080/wp-installer/public_html/', '--title=My WordPress Site', '--admin_user=admin', '--admin_password=password', '--admin_email=admin@example.com', '--locale=' . $locale, '--path=' . $path]); // Replace with your wp-cli.phar path
         $process->run(function ($type, $buffer) {
             echo " > $buffer\n";
         });
@@ -136,7 +136,7 @@ PHP;
         #set right path for the plugin
         $wooCommercePath = $path;
         echo "Installing WooCommerce plugin...\n";
-        $process = new Process(['C:/Users/jalal/bin/wp', 'plugin', 'install', 'woocommerce', '--activate', '--path=' . $wooCommercePath]); // Replace with your wp-cli.phar path
+        $process = new Process(['wp', 'plugin', 'install', 'woocommerce', '--activate', '--path=' . $wooCommercePath]); // Replace with your wp-cli.phar path
         $process->setTimeout(300); // Set timeout to 5 minutes
         $process->run(function ($type, $buffer) {
             echo " > $buffer\n";
