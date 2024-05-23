@@ -111,6 +111,12 @@ register_uninstall_hook(
 
  
 
+#if the user is an admin, then load the admin file
+if ( is_admin() ) {
+    // we are in admin mode
+    require_once __DIR__ . '/admin/wp-plugin-admin.php';
+}
+
 
 
 
