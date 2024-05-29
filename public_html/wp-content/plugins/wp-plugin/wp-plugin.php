@@ -5,6 +5,12 @@
 /**
  * Plugin Name
  * 
+ * 
+ * This file is read by WordPress to generate the plugin information in the plugin
+ * admin area. This file also includes all of the dependencies used by the plugin,
+ * registers the activation and deactivation functions, and defines a function
+ * that starts the plugin.
+ * 
  * @package           PluginPackage
  * @author            Jalal Haidar
  * @copyright         2024 Techchaps
@@ -108,6 +114,20 @@ register_uninstall_hook(
     __FILE__,
     'twip_uninstall'
 );
+
+
+#Avoid Direct File Access
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+
+
+#if direct access to this file is called, then abort execution
+if ( ! defined( 'WPINC' ) ) {
+    die;
+}
+
 
  
 
